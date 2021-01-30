@@ -1,0 +1,15 @@
+project.ext {
+
+    fragmentKtx = "1.2.5"
+    hiltViewModel = "1.0.0-alpha01"
+
+    hilt = [
+        library:"com.google.dagger:hilt-android:$hiltVersion",
+        compiler:"com.google.dagger:hilt-android-compiler:$hiltVersion",
+        viewModel: "androidx.hilt:hilt-lifecycle-viewmodel:$hiltViewModel"
+    ]
+
+    androidKtx = [
+        fragment: "androidx.fragment:fragment-ktx:$fragmentKtx"
+    ]
+}
