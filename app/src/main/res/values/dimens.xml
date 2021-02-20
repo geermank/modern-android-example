@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- episodes list dimens -->
+    <dimen name="episode_item_separation">12dp</dimen>
+
+</resources>

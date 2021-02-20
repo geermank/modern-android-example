@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- base margin and padding dimens -->
+    <dimen name="xshort_distance">4dp</dimen>
+    <dimen name="short_distance">8dp</dimen>
+    <dimen name="medium_distance">16dp</dimen>
+    <dimen name="large_distance">24dp</dimen>
+    <dimen name="xlarge_distance">32dp</dimen>
+
+    <!-- base text dimens -->
+    <dimen name="small_text">12sp</dimen>
+    <dimen name="medium_text">16sp</dimen>
+
+    <!-- base card dimens -->
+    <dimen name="card_elevation">1dp</dimen>
+    <dimen name="card_corner_radius">12dp</dimen>
+
+</resources>

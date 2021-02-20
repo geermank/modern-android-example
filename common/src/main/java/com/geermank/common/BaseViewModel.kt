@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 
 abstract class BaseViewModel : ViewModel() {
 
-    private val coroutineExceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+    private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
         onCoroutineError(throwable)
     }
 
@@ -18,6 +18,6 @@ abstract class BaseViewModel : ViewModel() {
     }
 
     protected open fun onCoroutineError(error: Throwable) {
-        // ignore error by default
+        // ignore error by default, let every subclass implement its behaviour
     }
 }
