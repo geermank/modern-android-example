@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.geermank.common.BaseFragment
-import com.geermank.common.OnListItemClickListener
+import com.geermank.common.recyclerview.OnListItemClickListener
 import com.geermank.common.extensions.remove
 import com.geermank.rickandmorty.databinding.FragmentEpisodesBinding
 import dagger.hilt.android.AndroidEntryPoint

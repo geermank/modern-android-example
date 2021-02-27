@@ -3,8 +3,7 @@ package com.geermank.rickandmorty.episodes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.geermank.common.OnListItemClickListener
+import com.geermank.common.recyclerview.OnListItemClickListener
 import com.geermank.common.recyclerview.ClickableAdapter
 import com.geermank.common.recyclerview.ClickableViewHolder
 import com.geermank.rickandmorty.R

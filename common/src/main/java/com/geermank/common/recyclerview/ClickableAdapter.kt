@@ -3,7 +3,6 @@ package com.geermank.common.recyclerview
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.geermank.common.OnListItemClickListener
 
 abstract class ClickableAdapter<ItemType, VH : ClickableViewHolder<ItemType>>(
     private val data: List<ItemType>,
