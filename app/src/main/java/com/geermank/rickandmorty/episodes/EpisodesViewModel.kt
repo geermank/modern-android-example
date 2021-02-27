@@ -3,36 +3,32 @@ package com.geermank.rickandmorty.episodes
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import com.geermank.common.BaseViewModel
-import com.geermank.domain.episodes.Episode
-import com.geermank.domain.episodes.GetEpisodesUseCase
-import java.util.*
+import com.geermank.data.models.EpisodeDto
+import com.geermank.data.repository.EpisodesRepository
 
 class EpisodesViewModel @ViewModelInject constructor(
-    private val getEpisodesUseCase: GetEpisodesUseCase
+    private val repository: EpisodesRepository
 ) : BaseViewModel() {
 
-    val episodesViewData = MutableLiveData<List<EpisodeViewData>>()
-
-    private val episodes = LinkedList<Episode>()
+    val episodes = MutableLiveData<List<EpisodeViewData>>()
 
     init {
         runCoroutine {
-            episodes.addAll(getEpisodesUseCase.execute(Unit))
-            val viewModels = convertEpisodesToViewModel()
-            episodesViewData.value = viewModels
+            val episodesData = repository.getEpisodes()
+            episodes.value = convertToViewDataModel(episodesData)
         }
     }
 
     override fun onCoroutineError(error: Throwable) {
-
+        // TODO handle error
     }
 
-    private fun convertEpisodesToViewModel(): List<EpisodeViewData> {
-        return episodes.map {
+    private fun convertToViewDataModel(episodesData: List<EpisodeDto>): List<EpisodeViewData> {
+        return episodesData.map {
             EpisodeViewData(
-                it.getId(),
-                it.getName(),
-                it.getAirDate()
+                it.id,
+                "${it.episode} - ${it.name}",
+                it.airDate
             )
         }
     }

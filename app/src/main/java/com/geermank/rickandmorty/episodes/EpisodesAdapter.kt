@@ -5,47 +5,36 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.geermank.common.OnListItemClickListener
+import com.geermank.common.recyclerview.ClickableAdapter
+import com.geermank.common.recyclerview.ClickableViewHolder
 import com.geermank.rickandmorty.R
 import com.geermank.rickandmorty.databinding.EpisodeListItemBinding
 
-class EpisodesAdapter(private val episodes: List<EpisodeViewData>) : RecyclerView.Adapter<EpisodesViewHolder>() {
+class EpisodesAdapter(
+    episodes: List<EpisodeViewData>,
+    clickListener: OnListItemClickListener<EpisodeViewData>
+) : ClickableAdapter<EpisodeViewData, EpisodesViewHolder>(episodes, clickListener) {
 
-    private var itemClickListener: OnListItemClickListener<EpisodeViewData>? = null
-
-    fun setOnItemClickListener(itemClickListener: OnListItemClickListener<EpisodeViewData>) {
-        this.itemClickListener = itemClickListener
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodesViewHolder {
+    override fun createNewViewHolder(
+        parent: ViewGroup,
+        clickListener: OnListItemClickListener<EpisodeViewData>
+    ): EpisodesViewHolder {
         return EpisodesViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.episode_list_item, parent, false),
-            itemClickListener
+            clickListener
         )
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
-    }
-
-    override fun onBindViewHolder(holder: EpisodesViewHolder, position: Int) {
-        holder.bind(episodes[position])
-    }
-
-    override fun getItemCount(): Int {
-        return episodes.size
     }
 }
 
 class EpisodesViewHolder(
     view: View,
-    private val listener: OnListItemClickListener<EpisodeViewData>?
-) : RecyclerView.ViewHolder(view) {
+    listener: OnListItemClickListener<EpisodeViewData>
+) : ClickableViewHolder<EpisodeViewData>(view, listener) {
 
-    fun bind(viewData: EpisodeViewData) {
+    override fun bind(data: EpisodeViewData) {
         EpisodeListItemBinding.bind(itemView).apply {
-            episodeName.text = viewData.nameLabelValue
-            episodeAirDate.text = viewData.airDateLabelValue
-            root.setOnClickListener { listener?.onItemClick(viewData) }
+            episodeName.text = data.title
+            episodeAirDate.text = data.airDate
         }
     }
 }

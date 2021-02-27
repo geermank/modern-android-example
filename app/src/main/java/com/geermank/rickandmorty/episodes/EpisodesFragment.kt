@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.geermank.common.BaseFragment
 import com.geermank.common.OnListItemClickListener
+import com.geermank.common.extensions.remove
 import com.geermank.rickandmorty.databinding.FragmentEpisodesBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,23 +25,28 @@ class EpisodesFragment : BaseFragment(), OnListItemClickListener<EpisodeViewData
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentEpisodesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.episodesViewData.observe(viewLifecycleOwner) {
+        viewModel.episodes.observe(viewLifecycleOwner) {
+            removeLoading()
             setUpEpisodesList(it)
         }
     }
 
-    private fun setUpEpisodesList(episodes: List<EpisodeViewData>) {
-        binding.episodesList.adapter = EpisodesAdapter(episodes).also { it.setOnItemClickListener(this) }
+    override fun onItemClick(item: EpisodeViewData) {
+        Toast.makeText(context, item.title, Toast.LENGTH_SHORT).show()
     }
 
-    override fun onItemClick(item: EpisodeViewData) {
-        Toast.makeText(context, item.nameLabelValue, Toast.LENGTH_SHORT).show()
+    private fun removeLoading() {
+        binding.episodesLoading.remove()
+    }
+
+    private fun setUpEpisodesList(episodes: List<EpisodeViewData>) {
+        binding.episodesList.adapter = EpisodesAdapter(episodes, this)
     }
 }
