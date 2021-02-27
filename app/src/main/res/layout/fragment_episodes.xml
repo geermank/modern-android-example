@@ -9,6 +9,8 @@
         android:id="@+id/episodes_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingVertical="@dimen/episode_item_separation"
+        android:clipToPadding="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <ProgressBar

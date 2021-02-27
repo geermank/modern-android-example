@@ -7,7 +7,7 @@ project.ext {
     coreKtxVersion = "1.3.2"
 
     // Hilt
-    hiltViewModelVersion = "1.0.0-alpha03"
+    hiltViewModelVersion = "1.0.0-alpha02"
 
     // Ktx libraries
     fragmentKtxVersion = "1.2.5"
