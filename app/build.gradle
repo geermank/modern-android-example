@@ -63,4 +63,7 @@ dependencies {
     implementation rootProject.ext.hilt.viewModel
     kapt rootProject.ext.hilt.compiler
     kapt rootProject.ext.hilt.viewModelCompiler
+
+    // paging
+    implementation rootProject.ext.google.paging
 }

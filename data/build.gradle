@@ -45,6 +45,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation rootProject.ext.google.coreKtx
     implementation rootProject.ext.google.appCompat
+    implementation rootProject.ext.google.paging
 
     testImplementation rootProject.ext.testing.junit
     androidTestImplementation rootProject.ext.testing.androidJunit

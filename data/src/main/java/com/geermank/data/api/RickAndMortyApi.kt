@@ -10,7 +10,7 @@ class RickAndMortyApi @Inject constructor() : BaseApi() {
 
     private val service: RickAndMortyService = buildService()
 
-    suspend fun getAllEpisodes(): ResponseDto<EpisodeDto> = service.getAllEpisodes()
+    suspend fun getEpisodes(page: Int): ResponseDto<EpisodeDto> = service.getEpisodes(page)
 
     override fun getBaseUrl(): String {
         return API_URL

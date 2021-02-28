@@ -44,7 +44,7 @@ dependencies {
     implementation rootProject.ext.google.appCompat
     implementation rootProject.ext.google.materialDesign
     implementation rootProject.ext.google.constraintLayout
-
+    implementation rootProject.ext.google.paging
 
     // testing
     testImplementation rootProject.ext.testing.junit

@@ -1,35 +1,27 @@
 package com.geermank.rickandmorty.episodes
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.paging.PagedList
 import com.geermank.common.BaseViewModel
+import com.geermank.common.extensions.asLiveData
 import com.geermank.data.models.EpisodeDto
 import com.geermank.data.repository.EpisodesRepository
+import com.geermank.data.repository.paging.EpisodesDataSourceFactory
 
-class EpisodesViewModel @ViewModelInject constructor(
-    private val repository: EpisodesRepository
-) : BaseViewModel() {
+const val EPISODES_PER_PAGE = 41
+const val EPISODES_PREFETCH_SIZE = 20
 
-    val episodes = MutableLiveData<List<EpisodeViewData>>()
+class EpisodesViewModel @ViewModelInject constructor(repository: EpisodesRepository) : BaseViewModel() {
+
+    val episodes: LiveData<PagedList<EpisodeDto>>
 
     init {
-        runCoroutine {
-            val episodesData = repository.getEpisodes()
-            episodes.value = convertToViewDataModel(episodesData)
-        }
+        val dataSourceFactory = EpisodesDataSourceFactory(repository, coroutineExecutor)
+        episodes = dataSourceFactory.asLiveData(EPISODES_PER_PAGE, EPISODES_PREFETCH_SIZE)
     }
 
     override fun onCoroutineError(error: Throwable) {
         // TODO handle error
-    }
-
-    private fun convertToViewDataModel(episodesData: List<EpisodeDto>): List<EpisodeViewData> {
-        return episodesData.map {
-            EpisodeViewData(
-                it.id,
-                "${it.episode} - ${it.name}",
-                it.airDate
-            )
-        }
     }
 }

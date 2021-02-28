@@ -2,22 +2,21 @@ package com.geermank.common.recyclerview
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class ClickableAdapter<ItemType, VH : ClickableViewHolder<ItemType>>(
-    private val data: List<ItemType>,
-    private val clickListener: OnListItemClickListener<ItemType>
-) : RecyclerView.Adapter<VH>() {
-
-    override fun getItemCount(): Int {
-        return data.size
-    }
+    private val clickListener: OnListItemClickListener<ItemType>,
+    diffCallback: DiffUtil.ItemCallback<ItemType>
+) : PagedListAdapter<ItemType, VH>(diffCallback) {
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        val itemData = data[position]
-        holder.apply {
-            setClickListener(itemData)
-            bind(itemData)
+        getItem(position)?.let { itemData ->
+            holder.apply {
+                setClickListener(itemData)
+                bind(itemData)
+            }
         }
     }
 
