@@ -1,4 +1,4 @@
-package com.geermank.common
+package com.geermank.common.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

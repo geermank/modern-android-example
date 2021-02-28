@@ -1,7 +1,7 @@
 package com.geermank.rickandmorty
 
 import android.os.Bundle
-import com.geermank.common.FragmentContainerActivity
+import com.geermank.common.presentation.fragments.FragmentContainerActivity
 import com.geermank.rickandmorty.databinding.ActivityMainBinding
 import com.geermank.rickandmorty.episodes.EPISODES_FRAGMENT_TAG
 import com.geermank.rickandmorty.episodes.EpisodesFragment

@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.paging.PagedList
-import com.geermank.common.BaseFragment
+import com.geermank.common.presentation.fragments.BaseFragment
 import com.geermank.common.recyclerview.OnListItemClickListener
 import com.geermank.common.extensions.remove
+import com.geermank.common.presentation.fragments.modal.ModalData
+import com.geermank.common.presentation.fragments.modal.actions.FinishActivityAction
 import com.geermank.data.models.EpisodeDto
+import com.geermank.rickandmorty.R
 import com.geermank.rickandmorty.databinding.FragmentEpisodesBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,18 +39,27 @@ class EpisodesFragment : BaseFragment(), OnListItemClickListener<EpisodeDto> {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         createListAdapter()
-        viewModel.episodes.observe(viewLifecycleOwner) {
-            removeLoading()
-            setUpEpisodesList(it)
-        }
+        observeEpisodes()
+        observeErrors()
     }
 
     private fun createListAdapter() {
         episodesAdapter = EpisodesAdapter(this).also { binding.episodesList.adapter = it }
     }
 
-    override fun onItemClick(item: EpisodeDto) {
-        Toast.makeText(context, item.name, Toast.LENGTH_SHORT).show()
+    private fun observeEpisodes() {
+        viewModel.episodes.observe(viewLifecycleOwner) {
+            removeLoading()
+            setUpEpisodesList(it)
+        }
+    }
+
+    private fun observeErrors() {
+        viewModel.error.observe(viewLifecycleOwner) {
+            // TODO add retry option based on if the error is recoverable
+            val modalData = ModalData(R.drawable.ic_error_outlined, it.title, it.cause, FinishActivityAction())
+            showModal(modalData)
+        }
     }
 
     private fun removeLoading() {
@@ -56,5 +68,9 @@ class EpisodesFragment : BaseFragment(), OnListItemClickListener<EpisodeDto> {
 
     private fun setUpEpisodesList(episodes: PagedList<EpisodeDto>) {
         episodesAdapter.submitList(episodes)
+    }
+
+    override fun onItemClick(item: EpisodeDto) {
+        Toast.makeText(context, item.name, Toast.LENGTH_SHORT).show()
     }
 }

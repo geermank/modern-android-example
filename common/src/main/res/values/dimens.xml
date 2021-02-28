@@ -10,9 +10,13 @@
     <!-- base text dimens -->
     <dimen name="small_text">12sp</dimen>
     <dimen name="medium_text">16sp</dimen>
+    <dimen name="large_text">21sp</dimen>
 
     <!-- base card dimens -->
     <dimen name="card_elevation">1dp</dimen>
     <dimen name="card_corner_radius">12dp</dimen>
+
+    <!-- modal dimens -->
+    <dimen name="modal_icon_size">80dp</dimen>
 
 </resources>

@@ -16,3 +16,9 @@ data class ResponseInfoDto(
     val next: String?,
     val prev: String?
 ) : Parcelable
+
+@Parcelize
+data class ErrorResponse(
+    val code: Int,
+    val message: String
+) : Parcelable

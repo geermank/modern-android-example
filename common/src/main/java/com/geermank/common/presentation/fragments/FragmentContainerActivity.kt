@@ -1,10 +1,12 @@
-package com.geermank.common
+package com.geermank.common.presentation.fragments
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
+import com.geermank.common.presentation.activities.BaseActivity
+import com.geermank.common.presentation.fragments.modal.ModalData
 
-abstract class FragmentContainerActivity : BaseActivity() {
+abstract class FragmentContainerActivity : BaseActivity(), FragmentInteractListener {
 
     abstract val fragmentContainerId: Int
 
@@ -28,4 +30,7 @@ abstract class FragmentContainerActivity : BaseActivity() {
         }
     }
 
+    override fun showModalFromFragment(requesterTag: String?, modalTag: String, modalData: ModalData) {
+        showModal(modalTag, modalData)
+    }
 }

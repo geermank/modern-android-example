@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="error_no_connection_title">Ops! No connection available</string>
+    <string name="error_no_connection_subtitle">Check your internet connection and try again</string>
+    <string name="error_generic_title">Ops! Something went terribly wrong</string>
+    <string name="error_generic_subtitle">We are on it. Please, try again later</string>
+    <string name="error_server_side_title">Ops! Something is wrong in our servers</string>
+    <string name="error_server_side_subtitle">We are working on it, please try again later</string>
+    <string name="error_client_side_title">Ops! Something\'s wrong</string>
+    <string name="error_client_side_subtitle">You are trying to do something you are no supose to do :p</string>
 </resources>

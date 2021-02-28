@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Rick and Morty</string>
+    <string name="ok">Ok!</string>
+    <string name="exit">Exit</string>
 </resources>
