@@ -32,7 +32,7 @@ abstract class ClickableAdapter<ItemType, VH : ClickableViewHolder<ItemType>>(
 
 abstract class ClickableViewHolder<ItemType>(
     view: View,
-    protected val clickListener: OnListItemClickListener<ItemType>
+    private val clickListener: OnListItemClickListener<ItemType>
 ) : RecyclerView.ViewHolder(view) {
 
     fun setClickListener(data: ItemType) {
