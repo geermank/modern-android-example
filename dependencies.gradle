@@ -7,6 +7,8 @@ project.ext {
     coreKtxVersion = "1.3.2"
     pagingVersion = "2.1.2"
 
+    // Room
+    roomVersion = "2.2.6"
 
     // Hilt
     hiltViewModelVersion = "1.0.0-alpha02"
@@ -25,6 +27,12 @@ project.ext {
         appCompat: "androidx.appcompat:appcompat:$appCompatVersion",
         coreKtx: "androidx.core:core-ktx:$coreKtxVersion",
         paging: "androidx.paging:paging-runtime-ktx:$pagingVersion"
+    ]
+
+    room = [
+        runtime: "androidx.room:room-runtime:$roomVersion",
+        ktx: "androidx.room:room-ktx:$roomVersion",
+        compiler: "androidx.room:room-compiler:$roomVersion"
     ]
 
     hilt = [

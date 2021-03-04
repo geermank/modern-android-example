@@ -11,10 +11,7 @@ data class ResponseDto<T : Parcelable>(
 
 @Parcelize
 data class ResponseInfoDto(
-    val count: Int,
-    val pages: Int,
-    val next: String?,
-    val prev: String?
+    val pages: Int
 ) : Parcelable
 
 @Parcelize

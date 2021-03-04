@@ -66,4 +66,9 @@ dependencies {
 
     // paging
     implementation rootProject.ext.google.paging
+
+    // room
+    implementation rootProject.ext.room.runtime
+    implementation rootProject.ext.room.ktx
+    kapt rootProject.ext.room.compiler
 }

@@ -54,6 +54,10 @@ dependencies {
     implementation rootProject.ext.hilt.library
     kapt rootProject.ext.hilt.compiler
 
+    implementation rootProject.ext.room.runtime
+    implementation rootProject.ext.room.ktx
+    kapt rootProject.ext.room.compiler
+
     def retrofitVersion = "2.9.0"
     def interceptorVersion = "4.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
