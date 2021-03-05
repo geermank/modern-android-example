@@ -7,3 +7,7 @@ fun <T> T.thisOrNull(condition: (T) -> Boolean): T? {
         null
     }
 }
+
+fun <T> T.thisOrDefault(default: () -> T): T {
+    return this ?: default()
+}

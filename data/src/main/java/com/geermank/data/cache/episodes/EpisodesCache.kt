@@ -1,7 +1,7 @@
 package com.geermank.data.cache.episodes
 
-import com.geermank.data.api.models.ResponseDto
-import com.geermank.data.api.models.ResponseInfoDto
+import com.geermank.data.api.models.PaginatedResponseDto
+import com.geermank.data.api.models.PaginatedResponseInfoDto
 import com.geermank.data.cache.InvalidateCacheStrategy
 import com.geermank.data.models.EpisodeDto
 import com.geermank.data.models.EpisodesPage
@@ -14,10 +14,11 @@ class EpisodesCache @Inject constructor(
 ) {
 
     /**
-     * Returns a list of episodes for a specific page or null if cache is invalid
+     * Returns a list of episodes for a specific page or null if cache is invalid or if
+     * the given page has not been synced
      */
-    suspend fun getEpisodesForPage(page: Int): ResponseDto<EpisodeDto>? {
-        val oldestSyncedEpisode = episodesDao.getOlderEpisode()
+    suspend fun getEpisodesForPage(page: Int): PaginatedResponseDto<EpisodeDto>? {
+        val oldestSyncedEpisode = episodesDao.getOldestEpisode()
          if (!cacheStateValidator.validCachedData(oldestSyncedEpisode)) {
              // general data is invalid, no matter the page we are querying
              // invalidate all cache and refresh data
@@ -30,11 +31,11 @@ class EpisodesCache @Inject constructor(
             return null
         }
         val totalPages = episodesDao.getTotalPages()
-        return ResponseDto(ResponseInfoDto(totalPages), episodes)
+        return PaginatedResponseDto(PaginatedResponseInfoDto(totalPages), episodes)
     }
 
-    suspend fun save(page: Int, response: ResponseDto<EpisodeDto>) {
-        episodesDao.apply {
+    suspend fun save(page: Int, response: PaginatedResponseDto<EpisodeDto>) {
+        episodesDao.run {
             // insert new episodes and update with refresh date
             insertEpisodes(response.results)
             episodesSyncDateUpdater.updateSyncDate(response.results)

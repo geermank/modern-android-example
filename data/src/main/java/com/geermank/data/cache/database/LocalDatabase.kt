@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.geermank.data.cache.episodes.EpisodesDao
+import com.geermank.data.models.CharacterDto
 import com.geermank.data.models.EpisodeDto
 import com.geermank.data.models.EpisodesPage
 import javax.inject.Singleton
@@ -14,7 +15,14 @@ const val CURRENT_DATABASE_VERSION = 1
 const val DATABASE_NAME = "LocalDatabase"
 
 @TypeConverters(DatabaseConverter::class)
-@Database(entities = [EpisodeDto::class, EpisodesPage::class], version = CURRENT_DATABASE_VERSION)
+@Database(
+    entities = [
+        EpisodeDto::class,
+        EpisodesPage::class,
+        CharacterDto::class
+    ],
+    version = CURRENT_DATABASE_VERSION
+)
 abstract class LocalDatabase : RoomDatabase() {
 
     companion object {

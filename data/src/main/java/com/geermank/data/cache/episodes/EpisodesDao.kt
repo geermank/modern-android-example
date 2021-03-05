@@ -17,7 +17,7 @@ interface EpisodesDao {
     suspend fun getPageEpisodes(page: Int): List<EpisodeDto>
 
     @Query("SELECT * FROM Episodes ep1 INNER JOIN (SELECT id, MIN(syncDate) FROM Episodes GROUP BY id) ep2 ON ep1.id = ep2.id")
-    suspend fun getOlderEpisode(): EpisodeDto?
+    suspend fun getOldestEpisode(): EpisodeDto?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEpisodes(results: List<EpisodeDto>)
