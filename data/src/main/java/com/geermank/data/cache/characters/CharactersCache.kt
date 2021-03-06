@@ -1,5 +1,6 @@
 package com.geermank.data.cache.characters
 
+import com.geermank.common.extensions.thisOrNull
 import com.geermank.data.models.CharacterDto
 import javax.inject.Inject
 
@@ -15,7 +16,9 @@ class CharactersCache @Inject constructor(
             invalidateCache()
             return null
         }
-        return charactersDao.getByIds(ids)
+        return charactersDao.getByIds(ids).thisOrNull {
+            it.isNotEmpty() && it.size == ids.size
+        }
     }
 
     suspend fun save(characters: List<CharacterDto>) {

@@ -58,4 +58,8 @@ dependencies {
     // hilt
     implementation rootProject.ext.hilt.library
     kapt rootProject.ext.hilt.compiler
+
+    // picasso
+    def picassoVersion = "2.71828"
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
 }

@@ -1,6 +1,7 @@
 package com.geermank.data.di
 
 import android.content.Context
+import com.geermank.data.cache.characters.CharactersDao
 import com.geermank.data.cache.episodes.EpisodesDao
 import com.geermank.data.cache.database.LocalDatabase
 import dagger.Module
@@ -21,5 +22,10 @@ object DatabaseModule {
     @Provides
     fun provideEpisodesDao(database: LocalDatabase): EpisodesDao {
         return database.episodesDao()
+    }
+
+    @Provides
+    fun provideCharactersDao(database: LocalDatabase): CharactersDao {
+        return database.charactersDao()
     }
 }

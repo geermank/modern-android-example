@@ -5,10 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.geermank.data.cache.characters.CharactersDao
 import com.geermank.data.cache.episodes.EpisodesDao
 import com.geermank.data.models.CharacterDto
 import com.geermank.data.models.EpisodeDto
 import com.geermank.data.models.EpisodesPage
+import org.w3c.dom.CharacterData
 import javax.inject.Singleton
 
 const val CURRENT_DATABASE_VERSION = 1
@@ -37,4 +39,6 @@ abstract class LocalDatabase : RoomDatabase() {
     }
 
     abstract fun episodesDao(): EpisodesDao
+
+    abstract fun charactersDao(): CharactersDao
 }

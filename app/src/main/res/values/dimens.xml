@@ -2,5 +2,7 @@
 <resources>
     <!-- episodes list dimens -->
     <dimen name="episode_item_separation">12dp</dimen>
+    <dimen name="character_list_item_image_height">200dp</dimen>
+    <dimen name="character_list_item_image_width">120dp</dimen>
 
 </resources>

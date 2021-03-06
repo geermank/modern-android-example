@@ -1,5 +1,6 @@
 package com.geermank.rickandmorty.episodes
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,10 +23,21 @@ const val EPISODES_FRAGMENT_TAG = "EPISODES_FRAGMENT_TAG"
 @AndroidEntryPoint
 class EpisodesFragment : BaseFragment(), OnListItemClickListener<EpisodeDto> {
 
+    interface EpisodesFragmentListener {
+        fun onEpisodeClick(episode: EpisodeDto)
+    }
+
     private lateinit var binding: FragmentEpisodesBinding
     private lateinit var episodesAdapter: EpisodesAdapter
 
     private val viewModel: EpisodesViewModel by viewModels()
+
+    private var episodesFragmentListener: EpisodesFragmentListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        episodesFragmentListener = context as EpisodesFragmentListener
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,6 +83,6 @@ class EpisodesFragment : BaseFragment(), OnListItemClickListener<EpisodeDto> {
     }
 
     override fun onItemClick(item: EpisodeDto) {
-        Toast.makeText(context, item.name, Toast.LENGTH_SHORT).show()
+        episodesFragmentListener?.onEpisodeClick(item)
     }
 }

@@ -8,4 +8,5 @@
     <string name="error_server_side_subtitle">We are working on it, please try again later</string>
     <string name="error_client_side_title">Ops! Something\'s wrong</string>
     <string name="error_client_side_subtitle">You are trying to do something you are no supose to do :p</string>
+    <string name="characters_screen_title">Characters seen in this episode</string>
 </resources>

@@ -5,7 +5,7 @@ import com.geermank.data.models.CharacterDto
 import com.geermank.data.models.EpisodeDto
 import javax.inject.Inject
 
-private const val API_URL = "https://rickandmortyapi.com/api/"
+const val API_URL = "https://rickandmortyapi.com/api/"
 
 class RickAndMortyApi @Inject constructor() : BaseApi() {
 

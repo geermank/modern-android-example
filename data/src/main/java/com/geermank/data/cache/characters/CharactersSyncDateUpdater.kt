@@ -10,6 +10,6 @@ class CharactersSyncDateUpdater @Inject constructor(
 ) {
 
     suspend fun updateSyncDate(characters: List<CharacterDto>) {
-        charactersDao.updateSyncDate(dateManager.now(), characters)
+        charactersDao.updateSyncDate(dateManager.now(), characters.map { it.id })
     }
 }

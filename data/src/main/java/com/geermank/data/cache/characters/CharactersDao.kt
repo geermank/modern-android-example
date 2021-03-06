@@ -2,6 +2,7 @@ package com.geermank.data.cache.characters
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.geermank.data.models.CharacterDto
 
@@ -18,8 +19,8 @@ interface CharactersDao {
     suspend fun deleteAll()
 
     @Query("UPDATE Characters SET syncDate = :newSyncDate WHERE id IN (:characters)")
-    suspend fun updateSyncDate(newSyncDate: Long, characters: List<CharacterDto>)
+    suspend fun updateSyncDate(newSyncDate: Long, characters: List<Long>)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun save(characters: List<CharacterDto>)
 }

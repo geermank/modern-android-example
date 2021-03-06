@@ -2,13 +2,15 @@ package com.geermank.rickandmorty
 
 import android.os.Bundle
 import com.geermank.common.presentation.fragments.FragmentContainerActivity
+import com.geermank.data.models.EpisodeDto
+import com.geermank.rickandmorty.characters.EpisodeCharactersFragment
 import com.geermank.rickandmorty.databinding.ActivityMainBinding
 import com.geermank.rickandmorty.episodes.EPISODES_FRAGMENT_TAG
 import com.geermank.rickandmorty.episodes.EpisodesFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : FragmentContainerActivity() {
+class MainActivity : FragmentContainerActivity(), EpisodesFragment.EpisodesFragmentListener {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -27,5 +29,11 @@ class MainActivity : FragmentContainerActivity() {
             return
         }
         addFragment(EpisodesFragment(), EPISODES_FRAGMENT_TAG)
+    }
+
+    override fun onEpisodeClick(episode: EpisodeDto) {
+        replaceFragment(
+            EpisodeCharactersFragment.newInstance(episode), EpisodeCharactersFragment.TAG, true
+        )
     }
 }
