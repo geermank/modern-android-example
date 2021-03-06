@@ -17,6 +17,7 @@ class CharactersCache @Inject constructor(
             return null
         }
         return charactersDao.getByIds(ids).thisOrNull {
+            // to return local copy of characters we must have them all
             it.isNotEmpty() && it.size == ids.size
         }
     }
