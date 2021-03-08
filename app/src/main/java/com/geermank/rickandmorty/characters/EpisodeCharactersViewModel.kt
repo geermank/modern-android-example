@@ -4,10 +4,12 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
+import com.geermank.common.presentation.error.ErrorModel
 import com.geermank.common.presentation.viewmodel.BaseViewModel
 import com.geermank.data.models.CharacterDto
 import com.geermank.data.models.EpisodeDto
 import com.geermank.data.repository.CharactersRepository
+import com.geermank.rickandmorty.errors.DataErrorMapper
 
 const val EPISODE_ARGUMENT = "EPISODE_ARGUMENT"
 private const val CHARACTERS_ARGUMENT = "CHARACTERS_ARGUMENT"
@@ -18,7 +20,9 @@ class EpisodeCharactersViewModel @ViewModelInject constructor(
 ) : BaseViewModel() {
 
     val characters = MutableLiveData<List<CharacterDto>>()
-    val onError = MutableLiveData<String>()
+    val onError = MutableLiveData<ErrorModel>()
+
+    private val errorMapper = DataErrorMapper(repository)
 
     init {
         if (savedStateHandle.contains(CHARACTERS_ARGUMENT)) {
@@ -29,7 +33,7 @@ class EpisodeCharactersViewModel @ViewModelInject constructor(
     }
 
     override fun onCoroutineError(error: Throwable) {
-        onError.postValue(error.message)
+        onError.postValue(errorMapper.getErrorModel(error))
     }
 
     private fun loadCharacters() {

@@ -30,6 +30,8 @@ class CharacterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         CharactersListItemBinding.bind(itemView).apply {
             ImageLoader.loadImage(character.image, ivCharacterIcon)
             tvCharacterName.text = character.name
+            tvCharacterSpecie.text = character.species
+            tvCharacterStatus.text = "Status: ${character.status}"
         }
     }
 }
