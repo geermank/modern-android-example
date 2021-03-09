@@ -17,7 +17,6 @@ import org.mockito.Mockito.*
 class EpisodesViewModelTest : ViewModelTest() {
 
     private lateinit var repository: EpisodesRepository
-    private lateinit var viewModel: EpisodesViewModel
 
     @Before
     fun setUp() {
@@ -27,24 +26,11 @@ class EpisodesViewModelTest : ViewModelTest() {
     @Test
     fun `on viewModel init activates episodes paginated list live data`() = runBlockingTest {
         `when`(repository.getEpisodes(anyInt())).thenReturn(mockEpisodesListResponse())
-        viewModel = EpisodesViewModel(repository)
+        val viewModel = EpisodesViewModel(repository)
 
         viewModel.episodes.getOrAwaitValue {
             assertNotNull(viewModel.episodes.value)
         }
-    }
-
-    @Test
-    fun `on coroutine error activates error live data`() = runBlockingTest {
-        // TODO test error
-        /*val errorException = RuntimeException("Can't reach the host")
-        `when`(repository.getEpisodes(anyInt())).thenThrow(errorException)
-
-        viewModel = EpisodesViewModel(repository)
-
-        viewModel.error.getOrAwaitValue(2) {
-
-        }*/
     }
 
     private fun mockEpisodesListResponse(): PaginatedResponseDto<EpisodeDto> {
