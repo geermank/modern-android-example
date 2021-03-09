@@ -52,6 +52,9 @@ dependencies {
 
     // testing
     testImplementation rootProject.ext.testing.junit
+    testImplementation rootProject.ext.testing.mockito
+    testImplementation rootProject.ext.testing.coroutines
+    testImplementation rootProject.ext.testing.archCore
     androidTestImplementation rootProject.ext.testing.androidJunit
     androidTestImplementation rootProject.ext.testing.expresso
 

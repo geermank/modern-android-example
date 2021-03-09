@@ -5,8 +5,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class PaginatedResponseDto<T : Parcelable>(
-        val info: PaginatedResponseInfoDto,
-        val results: List<T>
+    val info: PaginatedResponseInfoDto,
+    val results: List<T>
 ) : Parcelable
 
 @Parcelize

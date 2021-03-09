@@ -20,6 +20,9 @@ project.ext {
     junitVersion = "4.+"
     androidJunitVersion = "1.1.2"
     expressoVersion = "3.3.0"
+    mockitoVersion = "3.3.0"
+    coroutinesTestVersion = "1.4.3"
+    archCoreVersion = "2.1.0"
 
     google = [
         materialDesign: "com.google.android.material:material:$materialDesignVersion",
@@ -49,6 +52,9 @@ project.ext {
     testing = [
         junit: "junit:junit:$junitVersion",
         androidJunit: "androidx.test.ext:junit:$androidJunitVersion",
-        expresso: "androidx.test.espresso:espresso-core:$expressoVersion"
+        expresso: "androidx.test.espresso:espresso-core:$expressoVersion",
+        mockito: "org.mockito:mockito-core:$mockitoVersion",
+        coroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion",
+        archCore: "androidx.arch.core:core-testing:$archCoreVersion"
     ]
 }
