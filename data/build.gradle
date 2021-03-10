@@ -48,6 +48,9 @@ dependencies {
     implementation rootProject.ext.google.paging
 
     testImplementation rootProject.ext.testing.junit
+    testImplementation rootProject.ext.testing.mockito
+    testImplementation rootProject.ext.testing.coroutines
+    testImplementation rootProject.ext.testing.archCore
     androidTestImplementation rootProject.ext.testing.androidJunit
 
     implementation rootProject.ext.androidKtx.fragment
