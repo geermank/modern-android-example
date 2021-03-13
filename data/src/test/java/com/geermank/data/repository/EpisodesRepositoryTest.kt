@@ -1,11 +1,10 @@
-package com.geermank.data
+package com.geermank.data.repository
 
 import com.geermank.data.api.RickAndMortyApi
 import com.geermank.data.api.models.PaginatedResponseDto
 import com.geermank.data.api.models.PaginatedResponseInfoDto
 import com.geermank.data.cache.episodes.EpisodesCache
 import com.geermank.data.models.EpisodeDto
-import com.geermank.data.repository.EpisodesRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
