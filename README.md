@@ -13,3 +13,5 @@ Concepts and libraries used for building this app:
 - Coroutines (https://developer.android.com/kotlin/coroutines)
 - Room (https://developer.android.com/training/data-storage/room)
 - Picasso (https://square.github.io/picasso/)
+
+For testing I used Mockito and JUnit (https://developer.android.com/training/testing/unit-testing/local-unit-tests), algon with two libraries for coroutine and architecture testing.
